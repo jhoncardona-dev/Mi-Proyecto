@@ -1,0 +1,30 @@
+# Entorno: los .env del taller usan credenciales demo y se versionan
+# (no uses este patrón en proyectos con secretos reales)
+
+# Node
+node_modules/
+npm-debug.log*
+package-lock.json.bak
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.env.local
+
+# IDE / OS
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Docker
+*.log
+
+# Coverage / tests
+.coverage
+htmlcov/
+.pytest_cache/
