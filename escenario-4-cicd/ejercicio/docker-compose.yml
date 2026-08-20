@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: cicd_fastapi_local
+    ports:
+      - "8000:8000"
+    environment:
+      APP_VERSION: "1.0.0"
+      ENV: development
+    healthcheck:
+      test: ["CMD-SHELL", "python -c \"import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health')\""]
+      interval: 10s
+      timeout: 3s
+      retries: 3

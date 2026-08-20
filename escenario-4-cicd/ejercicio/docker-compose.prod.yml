@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  app:
+    # Reemplaza USERNAME con tu usuario de DockerHub o usa GHCR
+    image: ${DOCKERHUB_USERNAME:-tu-usuario}/app-cicd-fastapi:${TAG:-latest}
+    container_name: cicd_fastapi_prod
+    restart: always
+    ports:
+      - "8000:8000"
+    environment:
+      APP_VERSION: ${APP_VERSION:-1.0.0}
+      ENV: production
+    healthcheck:
+      test: ["CMD-SHELL", "python -c \"import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health')\""]
+      interval: 30s
+      timeout: 3s
+      retries: 3
