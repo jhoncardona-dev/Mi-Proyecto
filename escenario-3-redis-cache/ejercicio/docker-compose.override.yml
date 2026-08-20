@@ -1,0 +1,30 @@
+# Override para desarrollo local
+services:
+  app:
+    volumes:
+      - ./app:/app
+    command: uvicorn main:app --host 0.0.0.0 --port 5000 --reload
+    environment:
+      ENV: development
+
+  redis:
+    ports:
+      - "6379:6379"
+
+  db:
+    ports:
+      - "5433:5432"
+
+  redis-commander:
+    image: rediscommander/redis-commander:latest
+    container_name: cache_redis_ui
+    restart: always
+    ports:
+      - "8082:8081"
+    environment:
+      REDIS_HOSTS: local:redis:6379
+    depends_on:
+      redis:
+        condition: service_healthy
+    networks:
+      - cache_network
