@@ -19,8 +19,11 @@ Aplicación **FastAPI** con multi-stage Dockerfile, tests, Trivy, publicación a
 
 Settings → Secrets and variables → Actions:
 
-- `DOCKERHUB_USERNAME`
-- `DOCKERHUB_TOKEN`
+- `DOCKERHUB_USERNAME` (opcional pero recomendado)
+- `DOCKERHUB_TOKEN` (opcional pero recomendado)
+
+Sin esos secrets el workflow **igual publica en GHCR** (`ghcr.io/<usuario>/app-cicd-fastapi`).
+Con ellos también publica en DockerHub.
 
 ## Probar localmente
 
